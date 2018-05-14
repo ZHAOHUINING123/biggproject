@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Example using PHP</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0; 
+		}
+		#mapa { 
+			height: 600px; width: 800px;margin-left: 0px; display: inline-block;}
+		#areab { height: 600px; width: 450px; margin-right: 0px; margin-bottom: 0px;display: inline-block; float: right;}
+		#areab li{ list-style: none; height: 300px; width: 455px; float: right; }
+
+
+		#logoarea{height: 200px; width: 450px;text-align: middle;}
+		#logo {height: 300px; text-align: middle;}
+		header{ height: 200px; background: #f2f2f2; font-weight: bold; text-align: center; line-height: 200px; }
+
+		#nav{ width: 100%; height: 50px; background: #333; }
+		#nav ul{ width: 900px; margin: 0 auto; }
+		#nav li{ list-style: none;  float: left; }
+		#nav li a{ font-size: 16px; height: 50px; color: #fff; padding: 0 80px; line-height: 50px; text-decoration: none; display: inline-block; }
+		#nav li a:hover{ background: #666; }
+
+		#search_area{margin:0;padding:0px;}
+
+	</style>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+  		integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+  		crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+  		integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+  		crossorigin=""></script>
+  	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>	
+  	<script type="text/javascript" src="datepicker/moment.js"></script>
+	<script type="text/javascript" src="datepicker/daterangepicker.js"></script>
+	<?php include("earthquakedata.php"); ?>
+	<script src="maplogic.js"></script>
+	<script src="./laydate/laydate.js"></script>
+	<style>
+	  body{padding: 20px;}
+	  .demo-input{padding-left: 10px; height: 38px; min-width: 262px; line-height: 38px; border: 1px solid #e6e6e6;  background-color: #fff;  border-radius: 2px;}
+	  .demo-footer{padding: 50px 0; color: #999; font-size: 14px;}
+	  .demo-footer a{padding: 0 5px; color: #01AAED;}
+  	</style>
+</head>
+
+<body onload=initialise()>
+	
+	<div id="nav">
+		<ul>
+			<li><a href="#">A</a></li>
+			<li><a href="#">B</a></li>
+			<li><a href="#">C</a></li>
+			<li><a href="#">D</a></li>
+			<li><a href="#">E</a></li>
+		</ul>
+	</div>
+			
+		
+
+	
+    <div id="mapa"></div>
+    <ul id="areab">
+    	<li id="logoarea"><img id="logo" src="weblogo.png" /></li>
+    	<li id="mapb"></li>
+    </ul>
+
+
+	<div id="search_area">
+		<?php  
+	// the only bit of PHP actuially used in this example, just to check
+	// that we are set up properly
+	
+	// the form should re-load the same page. 
+	// The object $_SERVER is built in, and it contains various fields
+	// of which SCRIPT_NAME gives the URL of the current page
+			echo "<form action='".$_SERVER['SCRIPT_NAME']."' method='get'>";
+		?>
+
+		<p>Select earthquake type:<br>
+		<input type=radio name=magnitude value=0 checked>All earthquakes<br>
+		<input type=radio name=magnitude value=1>Small<br>
+		<input type=radio name=magnitude value=2>Mid-strong<br>
+		<input type=radio name=magnitude value=3>Strong<br>
+		<input type=radio name=magnitude value=4>Violent<br>
+		<input type=radio name=magnitude value=5>Huge<br>
+
+		<input type=submit value='Submit'>
+		</form>
+
+		echo "<form action='".$_SERVER['SCRIPT_NAME']."' method='get'>";
+		?>
+			<input type="text" class="demo-input" placeholder="请选择日期" id="test1" name="selectdate">
+			<input type=submit value='Submit'>
+		</form>
+	</div>
+
+	<script type="text/javascript">
+		laydate.render({
+		  elem: '#test1'
+		  ,lang: 'en'
+		});
+	</script>
+	
+</body>
+</html>
