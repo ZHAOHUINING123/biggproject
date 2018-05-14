@@ -31,7 +31,7 @@ if (isset($_GET['magnitude'])) {
 if (isset($_GET['selectdate'])) {
 	$sev = $_GET['selectdate'];
 	// We only need to look for certain values
-	$query .= (" where date = " . $sev);
+	$query .= (" where date = '" . $sev . "'");
 }
 // this captures all the results as an array in PHP...
 $results = db_assocArrayAll($dbh,$query);
