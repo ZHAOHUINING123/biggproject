@@ -49,8 +49,8 @@ function initialise() {
 			} else {
 				var thisIcon = icon5;
 			}
-		var marker = L.marker([myData[item].latitude,myData[item].longitude],{icon: thisIcon}).addTo(myMapA);
-		var marker = L.marker([myData[item].latitude,myData[item].longitude]).addTo(myMapB);
+		var marker = L.marker([myData[item].latitude,myData[item].longitude],{icon: thisIcon}).addTo(myMapB);
+		var marker = L.marker([myData[item].latitude,myData[item].longitude]).addTo(myMapA);
 		var circle = L.circle([myData[item].latitude,myData[item].longitude],{radius:myData[item].horizontal_distance * 1000}).addTo(myMapB);
 	}
 	
