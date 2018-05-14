@@ -15,18 +15,47 @@ function initialise() {
 	myMapB.addLayer(osmB); 
 
 	//Add a marker
-	var jamsIcon = L.icon({
-		iconUrl: 'marker.png',
+	var icon1 = L.icon({
+		iconUrl: 'marker1.png',
+		iconAnchor:   [12, 12],
+	});	
+
+	var icon2 = L.icon({
+		iconUrl: 'marker2.png',
+		iconAnchor:   [12, 12],
+	});	
+	var icon3 = L.icon({
+		iconUrl: 'marker3.png',
+		iconAnchor:   [12, 12],
+	});	
+	var icon4 = L.icon({
+		iconUrl: 'marker4.png',
+		iconAnchor:   [12, 12],
+	});	
+	var icon5 = L.icon({
+		iconUrl: 'marker5.png',
 		iconAnchor:   [12, 12],
 	});	
 	
-
-	for (item in myData) {
-		var marker = L.marker([myData[item].latitude,myData[item].longitude],{icon: jamsIcon}).addTo(myMapA);
-     		var marker = L.marker([myData[item].latitude,myData[item].longitude]).addTo(myMapB);
+	for (item in myData){
+		if (myData[item].magnitude < 5) {
+				var thisIcon = icon1;
+			} else if (myData[item].magnitude < 6) {
+				var thisIcon = icon2;
+			} else if (myData[item].magnitude < 7) {
+				var thisIcon = icon3;
+			} else if (myData[item].magnitude < 8) {
+				var thisIcon = icon4;
+			} else {
+				var thisIcon = icon5;
+			}
+		var marker = L.marker([myData[item].latitude,myData[item].longitude],{icon: thisIcon}).addTo(myMapA);
+		var marker = L.marker([myData[item].latitude,myData[item].longitude]).addTo(myMapB);
 		var circle = L.circle([myData[item].latitude,myData[item].longitude],{radius:myData[item].horizontal_distance * 1000}).addTo(myMapB);
 	}
-
+	
+			
+	
 
   
 	function onClickA(m) {
