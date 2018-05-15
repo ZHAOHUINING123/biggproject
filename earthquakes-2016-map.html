@@ -4,14 +4,25 @@
 	<title>Example using PHP</title>
 	<meta charset="UTF-8">
 	<style type="text/css">
-		*{
-			padding: 0;
-			margin: 0; 
+		*{padding: 0;margin: 0;}
+
+		#introduction{
+			width: 50%;
+			align-content: center;
+			margin: auto;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding: 50px;
+			border: solid 3px orange;
+			border-radius: 5em 0 5em 0;
+			background-color: grey;
+			font-family:"Times New Roman",Georgia,Serif;
+			font-size: 18px;
 		}
-		#mapb { 
-			height: 600px; width: 800px;margin-left: 0px; display: inline-block;}
-		#areab { height: 600px; width: 450px; margin-right: 0px; margin-bottom: 0px;display: inline-block; float: right;}
-		#areab li{ list-style: none; height: 300px; width: 455px; float: right; }
+
+		#mapb {height: 600px; width: 900px;margin-left: 0px; display: inline-block;}
+		#areab { height: 600px; width: 500px; margin-right: 0px; margin-bottom: 0px;display: inline-block; float: right;}
+		#areab li{ list-style: none; height: 300px; width: 500px; float: right; }
 
 
 		#logoarea{height: 200px; width: 450px;text-align: middle;}
@@ -21,10 +32,18 @@
 		#nav{ width: 100%; height: 50px; background: #333; }
 		#nav ul{ width: 900px; margin: 0 auto; }
 		#nav li{ list-style: none;  float: left; }
-		#nav li a{ font-size: 16px; height: 50px; color: #fff; padding: 0 80px; line-height: 50px; text-decoration: none; display: inline-block; }
+		#nav li a{ font-size: 16px; height: 50px; color: #fff; padding: 0 60px; line-height: 50px; text-decoration: none; display: inline-block; }
 		#nav li a:hover{ background: #666; }
 
-		#search_area{margin:0;padding:0px;}
+		#search_area{margin:0;padding:0px; margin-top: 40px;}
+		#magsearch{width: 40%; float: left; border: black solid 2px; display: inline-block;}
+		#datesearch{display: inline-block; margin-left: 50px; border: black solid 2px; width: 40%;}
+		#copy-right{
+			text-align: center;
+		    font-size: 16px;
+		    margin: 0;
+		    padding-top: 35px;
+		}
 		.demo-input{padding-left: 10px; height: 38px; min-width: 262px; line-height: 38px; border: 1px solid #e6e6e6;  background-color: #fff;  border-radius: 2px;}
 	    .demo-footer{padding: 50px 0; color: #999; font-size: 14px;}
 	    .demo-footer a{padding: 0 5px; color: #01AAED;}
@@ -42,7 +61,6 @@
 		  lang: 'en'
 		});
 	</script>
-	<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 	<?php include("earthquakedata.php"); ?>
 	<script src="maplogic.js"></script>
 	<script src="./laydate/laydate.js"></script>
@@ -52,56 +70,64 @@
 	
 	<div id="nav">
 		<ul>
-			<li><a href="#">A</a></li>
-			<li><a href="#">B</a></li>
-			<li><a href="#">C</a></li>
-			<li><a href="#">D</a></li>
-			<li><a href="#">E</a></li>
+			<li><a href="#introduction">Introduction</a></li>
+			<li><a href="#mapzone">Mapzone</a></li>
+			<li><a href="#search_area">Search Area</a></li>
+			<li><a href="#contact">Contact Us</a></li>
 		</ul>
 	</div>
-			
-		
-
-	
-    <div id="mapb"></div>
-    <ul id="areab">
-    	<li id="logoarea"><img id="logo" src="weblogo.png" /></li>
-    	<li id="mapa"></li>
-    </ul>
-
-
+	<div id="introduction">
+		<p>
+			This website is mainly formed by two interactive maps showing data about earthquakes occured from 2016-01-01 to 2016-12-31, with markers indicating locations of earthquakes and circles showing their influencing area.
+			<br>
+			Data source is from <a href="https://www.kaggle.com/burnetap/earthquake">kaggle</a>.
+		</p>
+	</div>
+	<div id="mapzone">
+		<div id="mapb"></div>
+	    <ul id="areab">
+	    	<li id="logoarea"><img id="logo" src="weblogo.png" /></li>
+	    	<li id="mapa"></li>
+	    </ul>
+	</div>
+ 
 	<div id="search_area">
-		<?php  
-	// the only bit of PHP actuially used in this example, just to check
-	// that we are set up properly
-	
-	// the form should re-load the same page. 
-	// The object $_SERVER is built in, and it contains various fields
-	// of which SCRIPT_NAME gives the URL of the current page
-			echo "<form action='".$_SERVER['SCRIPT_NAME']."' method='get'>";
-		?>
+		<div id="magsearch">
+			<?php  
+				// the only bit of PHP actuially used in this example, just to check
+				// that we are set up properly
+				
+				// the form should re-load the same page. 
+				// The object $_SERVER is built in, and it contains various fields
+				// of which SCRIPT_NAME gives the URL of the current page
+				echo "<form action='".$_SERVER['SCRIPT_NAME']."' method='get'>";
+			?>
 
-		<p>Select earthquake type:<br>
-		<input type=radio name=magnitude value=0 checked>All earthquakes<br>
-		<input type=radio name=magnitude value=1>Small<br>
-		<input type=radio name=magnitude value=2>Mid-strong<br>
-		<input type=radio name=magnitude value=3>Strong<br>
-		<input type=radio name=magnitude value=4>Violent<br>
-		<input type=radio name=magnitude value=5>Huge<br>
+				<p>Select earthquake type:<br>
+				<input type=radio name=magnitude value=0 checked>All earthquakes<br>
+				<input type=radio name=magnitude value=1>Small<br>
+				<input type=radio name=magnitude value=2>Mid-strong<br>
+				<input type=radio name=magnitude value=3>Strong<br>
+				<input type=radio name=magnitude value=4>Violent<br>
+				<input type=radio name=magnitude value=5>Huge<br>
 
-		<input type=submit value='Submit'>
-		</form>
-
+				<input type=submit value='Submit'>
+			</form>
+		</div>
+		
+		<div id="datesearch">
 		<?php
 		echo "<form action='".$_SERVER['SCRIPT_NAME']."' method='get'>";
 		?>
 			<input type="text" class="demo-input" placeholder="Please select a date" id="test1" name="selectdate">
 			<input type=submit value='Submit'>
 		</form>
+		</div>
 	</div>
-	<div id="chartarea">
-		
+	<div id="contact">
+		<p id="copy-right">
+			Copyright © 2018 UCL. All rights reserved.
+		</p>
 	</div>
-	
 </body>
 </html>
