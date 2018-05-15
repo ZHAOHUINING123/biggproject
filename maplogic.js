@@ -49,8 +49,8 @@ function initialise() {
 			} else {
 				var thisIcon = icon5;
 			}
-		var markerb = L.marker([myData[item].latitude,myData[item].longitude],{icon: thisIcon, title:"The id of the earthquake is" + myData[item].id}).addTo(myMapB);
-		markerb.bindPopup("The more information of the earthquake：<b> Date: "+ myData[item].date + "<br> Magnitude:" +
+		var markerb = L.marker([myData[item].latitude,myData[item].longitude],{icon: thisIcon, title:"The id of the earthquake is " + myData[item].id}).addTo(myMapB);
+		markerb.bindPopup("The more information of the earthquake：<br> Date: "+ myData[item].date + "<br> Magnitude:" +
 			myData[item].magnitude + "<br> Time:" + myData[item].time + "<br> Influence distance:" + myData[item].horizontal_distance);
 		var markea = L.marker([myData[item].latitude,myData[item].longitude]).addTo(myMapA);
 		var circle = L.circle([myData[item].latitude,myData[item].longitude],{radius:myData[item].horizontal_distance * 1000}).addTo(myMapB);
