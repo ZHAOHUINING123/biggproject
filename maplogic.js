@@ -50,8 +50,8 @@ function initialise() {
 				var thisIcon = icon5;
 			}
 		var markerb = L.marker([myData[item].latitude,myData[item].longitude],{icon: thisIcon, title:"The id of the earthquake is " + myData[item].id}).addTo(myMapB);
-		markerb.bindPopup("The more information of the earthquake：<br> Date: "+ myData[item].date + "<br> Time:" + myData[item].time +"<br> Magnitude:" +
-			myData[item].magnitude +  "<br> Influence distance:" + myData[item].horizontal_distance + "km");
+		markerb.bindPopup("The more information of the earthquake：<br> Date: "+ myData[item].date + "<br> Time: " + myData[item].time +"<br> Magnitude:" +
+			myData[item].magnitude +  "<br> Influence distance: " + myData[item].horizontal_distance + "km");
 		var markea = L.marker([myData[item].latitude,myData[item].longitude]).addTo(myMapA);
 		var circle = L.circle([myData[item].latitude,myData[item].longitude],{radius:myData[item].horizontal_distance * 1000}).addTo(myMapB);
 	}
@@ -79,8 +79,8 @@ function initialise() {
 	function onClickB(m){
 		var mapBCenter = m.latlng;
 		myMapB.panTo(mapBCenter);
-		var zoom = m.target.getZoom();
-		myMapB.setZoom(zoom + 1);
+		//var zoom = m.target.getZoom();
+		//myMapB.setZoom(zoom + 1);
 	}
 
 
