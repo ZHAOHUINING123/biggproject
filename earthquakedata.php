@@ -29,7 +29,7 @@ if (isset($_GET['magnitude'])) {
 	}
 }	
 if (isset($_GET['selectdate'])) {
-	$sev = $_GET['selectdate'];
+	$sev = $_GET['selectdate'] || "3000-01-01";
 	// We only need to look for certain values
 	$query .= (" where date = '" . $sev . "'");
 }
