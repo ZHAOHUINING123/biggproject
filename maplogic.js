@@ -6,12 +6,12 @@ function initialise() {
 	var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 	var osmA = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 12, attribution: osmAttrib});		
-	var osmB = new L.TileLayer(osmUrl, {minZoom: 5, maxZoom: 15, attribution: osmAttrib});		
+	var osmB = new L.TileLayer(osmUrl, {minZoom: 4, maxZoom: 15, attribution: osmAttrib});		
 
 	myMapA.setView(new L.LatLng(0, 178.60),2);
 	myMapA.addLayer(osmA);
 
-	myMapB.setView(new L.LatLng(0, 178.60),5);
+	myMapB.setView(new L.LatLng(0, 178.60),4);
 	myMapB.addLayer(osmB); 
 
 	//Add a marker
@@ -49,8 +49,10 @@ function initialise() {
 			} else {
 				var thisIcon = icon5;
 			}
-		var marker = L.marker([myData[item].latitude,myData[item].longitude],{icon: thisIcon}).addTo(myMapB);
-		var marker = L.marker([myData[item].latitude,myData[item].longitude]).addTo(myMapA);
+		var markerb = L.marker([myData[item].latitude,myData[item].longitude],{icon: thisIcon, title:"The id of the earthquake is" + myData[item].id}).addTo(myMapB);
+		markerb.bindPopup("The more information of the earthquake：<b> Date: "+ myData[item].date + "<br> Magnitude:" +
+			myData[item].magnitude + "<br> Time:" + myData[item].time + "<br> Influence distance:" + myData[item].horizontal_distance);
+		var markea = L.marker([myData[item].latitude,myData[item].longitude]).addTo(myMapA);
 		var circle = L.circle([myData[item].latitude,myData[item].longitude],{radius:myData[item].horizontal_distance * 1000}).addTo(myMapB);
 	}
 	
@@ -64,7 +66,7 @@ function initialise() {
 		var mapACenter = m.latlng;
 		myMapA.panTo(mapACenter);
 		myMapB.panTo(mapACenter);
-		myMapB.setZoom(5);
+		myMapB.setZoom(4);
 	}
 
 	function onDragA(m) {
