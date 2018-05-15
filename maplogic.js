@@ -1,12 +1,12 @@
 function initialise() {
 	// create the map object
-	myMapB = new L.Map('mapa');
-	myMapA = new L.Map('mapb');
+	myMapB = new L.Map('mapb');
+	myMapA = new L.Map('mapa');
 	// create the tile layer with correct attribution
 	var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 	var osmA = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 12, attribution: osmAttrib});		
-	var osmB = new L.TileLayer(osmUrl, {minZoom: 4, maxZoom: 15, attribution: osmAttrib});		
+	var osmB = new L.TileLayer(osmUrl, {minZoom: 4, maxZoom: 18, attribution: osmAttrib});		
 
 	myMapA.setView(new L.LatLng(0, 178.60),2);
 	myMapA.addLayer(osmA);
