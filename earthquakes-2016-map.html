@@ -3,66 +3,20 @@
 <head>
 	<title>Example using PHP</title>
 	<meta charset="UTF-8">
-	<style type="text/css">
-		*{padding: 0;margin: 0;}
-
-		#introduction{
-			width: 50%;
-			align-content: center;
-			margin: auto;
-			margin-top: 20px;
-			margin-bottom: 20px;
-			padding: 50px;
-			border: solid 3px orange;
-			border-radius: 5em 0 5em 0;
-			background-color: grey;
-			font-family:"Times New Roman",Georgia,Serif;
-			font-size: 18px;
-		}
-
-		#mapb {height: 600px; width: 900px;margin-left: 0px; display: inline-block;}
-		#areab { height: 600px; width: 500px; margin-right: 0px; margin-bottom: 0px;display: inline-block; float: right;}
-		#areab li{ list-style: none; height: 300px; width: 500px; float: right; }
-
-
-		#logoarea{height: 200px; width: 450px;text-align: middle;}
-		#logo {height: 300px; text-align: middle;}
-		header{ height: 200px; background: #f2f2f2; font-weight: bold; text-align: center; line-height: 200px; }
-
-		#nav{ width: 100%; height: 50px; background: #333; }
-		#nav ul{ width: 900px; margin: 0 auto; }
-		#nav li{ list-style: none;  float: left; }
-		#nav li a{ font-size: 16px; height: 50px; color: #fff; padding: 0 60px; line-height: 50px; text-decoration: none; display: inline-block; }
-		#nav li a:hover{ background: #666; }
-
-		#search_area{margin:0;padding:0px; margin-top: 40px;}
-		#magsearch{width: 40%; float: left; border: black solid 2px; display: inline-block;}
-		#datesearch{display: inline-block; margin-left: 50px; border: black solid 2px; width: 40%;}
-		#copy-right{
-			text-align: center;
-		    font-size: 16px;
-		    margin: 0;
-		    padding-top: 35px;
-		}
-		.demo-input{padding-left: 10px; height: 38px; min-width: 262px; line-height: 38px; border: 1px solid #e6e6e6;  background-color: #fff;  border-radius: 2px;}
-	    .demo-footer{padding: 50px 0; color: #999; font-size: 14px;}
-	    .demo-footer a{padding: 0 5px; color: #01AAED;}
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="site_decoration.css">
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
   		integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
   		crossorigin=""/>
 	<script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
   		integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
   		crossorigin=""></script>
-  	
 	<?php include("earthquakedata.php"); ?>
 	<script src="maplogic.js"></script>
 	<script src="./laydate/laydate.js"></script>
 </head>
 
 <body onload=initialise()>
-	
+	<!-- Set the navigation bar for the site -->	
 	<div id="nav">
 		<ul>
 			<li><a href="#introduction">Introduction</a></li>
@@ -72,6 +26,7 @@
 		</ul>
 	</div>
 	<div id="introduction">
+		<!-- Introduction ofr the site and data -->
 		<p>
 			This website is mainly formed by two interactive maps showing data about earthquakes occured from 2016-01-01 to 2016-12-31, with markers indicating locations of earthquakes and circles showing their influencing area.
 			<br>
@@ -79,6 +34,7 @@
 		</p>
 	</div>
 	<div id="mapzone">
+		<!-- Place two map areas and logo -->
 		<div id="mapb"></div>
 	    <ul id="areab">
 	    	<li id="logoarea"><img id="logo" src="weblogo.png" /></li>
@@ -87,6 +43,7 @@
 	</div>
  
 	<div id="search_area">
+		<!-- Place the filter and search box -->
 		<div id="magsearch">
 			<?php  
 				// the only bit of PHP actuially used in this example, just to check
@@ -100,11 +57,11 @@
 
 				<p>Select earthquake type:<br>
 				<input type=radio name=magnitude value=0 checked>All earthquakes<br>
-				<input type=radio name=magnitude value=1>Small<br>
-				<input type=radio name=magnitude value=2>Mid-strong<br>
-				<input type=radio name=magnitude value=3>Strong<br>
-				<input type=radio name=magnitude value=4>Violent<br>
-				<input type=radio name=magnitude value=5>Huge<br>
+				<input type=radio name=magnitude value=1>Small ( Magnitude < 5 ) <img src="marker1.png"> <br>
+				<input type=radio name=magnitude value=2>Mid-strong ( 5 < Magnitude < 6 ) <img src="marker2.png"> <br>
+				<input type=radio name=magnitude value=3>Strong ( 6 < Magnitude < 7 ) <img src="marker3.png"> <br>
+				<input type=radio name=magnitude value=4>Violent ( 7 < Magnitude < 8) <img src="marker4.png"> <br>
+				<input type=radio name=magnitude value=5>Huge ( 8 < Magnitude ) <img src="marker5.png"> <br>
 
 				<input type=submit value='Submit'>
 			</form>
@@ -126,6 +83,7 @@
 		</div>
 	</div>
 	<div id="contact">
+		<!-- Copyright area -->
 		<p id="copy-right">
 			Copyright © 2018 UCL. All rights reserved.
 		</p>

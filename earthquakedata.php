@@ -9,6 +9,7 @@ $query = "SELECT * from earthquakes_2016";
 if (isset($_GET['magnitude'])) {
 	$sev = $_GET['magnitude'];
 	// We only need to look for certain values
+	// Search according to the magnitude of earthquakes
 	switch($sev) {
 	case 1:
 		$query .= " where magnitude <5 ";
@@ -28,11 +29,17 @@ if (isset($_GET['magnitude'])) {
 	default:
 	}
 }	
+
+// Decide if the search box is empty, and set a date for no data as default
 if (isset($_GET['selectdate'])) {
-	$sev = $_GET['selectdate'] || "3000-01-01";
+	$sev = $_GET['selectdate'];
+	if($sev == ""){
+		$sev = "2300-01-01";
+	}
 	// We only need to look for certain values
 	$query .= (" where date = '" . $sev . "'");
 }
+
 // this captures all the results as an array in PHP...
 $results = db_assocArrayAll($dbh,$query);
 

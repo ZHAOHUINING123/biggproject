@@ -1,20 +1,22 @@
 function initialise() {
-	// create the map object
+	// create two map objects
 	myMapB = new L.Map('mapb');
 	myMapA = new L.Map('mapa');
+
 	// create the tile layer with correct attribution
 	var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	var osmAttrib='Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 	var osmA = new L.TileLayer(osmUrl, {minZoom: 1, maxZoom: 12, attribution: osmAttrib});		
 	var osmB = new L.TileLayer(osmUrl, {minZoom: 4, maxZoom: 18, attribution: osmAttrib});		
 
+	// set the start view and zoom for two maps
 	myMapA.setView(new L.LatLng(0, 178.60),2);
 	myMapA.addLayer(osmA);
 
 	myMapB.setView(new L.LatLng(0, 178.60),4);
 	myMapB.addLayer(osmB); 
 
-	//Add a marker
+	// set markers for different data
 	var icon1 = L.icon({
 		iconUrl: 'marker1.png',
 		iconAnchor:   [12, 12],
@@ -49,6 +51,8 @@ function initialise() {
 			} else {
 				var thisIcon = icon5;
 			}
+
+		// set markers for the two maps, including circles and popups in mapb
 		var markerb = L.marker([myData[item].latitude,myData[item].longitude],{icon: thisIcon, title:"The id of the earthquake is " + myData[item].id}).addTo(myMapB);
 			markerb.bindPopup("The more information of the earthquake：<br> Date: "+ myData[item].date + "<br> Time: " + myData[item].time +"<br> Magnitude:" +
 			myData[item].magnitude +  "<br> Influence distance: " + myData[item].horizontal_distance + "km");
